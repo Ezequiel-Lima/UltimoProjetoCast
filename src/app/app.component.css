@@ -1,0 +1,7 @@
+#menu {
+  color: aliceblue;
+}
+
+#menu:hover{
+  color: rgb(124, 153, 161);
+}
