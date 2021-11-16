@@ -5,16 +5,56 @@
 
 <ng-template #mymodal let-modal>
   <div class="modal-header">
-    <h4 class="modal-title" id="modal-basic-title">Bootstrap Modal</h4>
+    <h4 class="modal-title" id="modal-basic-title">Cadastrar Curso</h4>
     <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
       <span aria-hidden="true">×</span>
     </button>
   </div>
   <div class="modal-body">
-    This is example from ItSolutionStuff.com
+
+    <div class="input-group">
+      <div class="input-group-prepend">
+        <span class="input-group-text">Descrição</span>
+      </div>
+      <textarea class="form-control" aria-label="With textarea"></textarea>
+    </div><br>
+
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="inputGroup-sizing-default">Data de Início</span>
+      </div>
+      <input type="date" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+    </div>
+
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="inputGroup-sizing-default">Data de Término</span>
+      </div>
+      <input type="date" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+    </div>
+
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="inputGroup-sizing-default">Quantidade de Alunos</span>
+      </div>
+      <input type="number" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+    </div>
+
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <label class="input-group-text" for="inputGroupSelect01">Categorias</label>
+      </div>
+      <select class="custom-select" id="inputGroupSelect01">
+        <option selected>--selecionar--</option>
+        <option value="1">One</option>
+        <option value="2">Two</option>
+        <option value="3">Three</option>
+      </select>
+    </div>
+
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Ok</button>
+    <button type="button" class="btn btn-success" (click)="modal.close('Save click')">Adicionar</button>
   </div>
 </ng-template>
 
@@ -31,7 +71,6 @@
     <!-- Tabela Superior -->
     <thead>
       <tr class="table-dark">
-        <th scope="col">Nome</th>
         <th scope="col">Descrição do assunto</th>
         <th scope="col">Data de início</th>
         <th scope="col">Data de término</th>
@@ -43,7 +82,6 @@
     <!-- Corpo da Tabela -->
     <tbody class="table-light">
       <tr>
-        <td>C#</td>
         <td>Desenvolvimento em C# .Net</td>
         <td>06/20/2021</td>
         <td>19/11/2021</td>
@@ -60,22 +98,6 @@
         </td>
       </tr>
       <tr>
-        <td>Java</td>
-        <td>Desenvolvimento</td>
-        <td>06/20/2021</td>
-        <td>19/11/2021</td>
-        <td>20</td>
-        <td>Multiplataforma</td>
-        <td>
-          <a href="">
-            <i class="fa fa-trash" aria-hidden="true"> Excluir</i>
-          </a>
-          <br>
-          <a href="">
-            <i class="fa fa-pencil" aria-hidden="true"> Editar</i>
-          </a>
-        </td>
-      </tr>
     </tbody>
   </table>
   <hr>

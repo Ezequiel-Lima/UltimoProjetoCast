@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
+import { CursoService } from '../services/curso.service';
 
 @Component({
   selector: 'app-cursos',
@@ -12,7 +13,15 @@ export class CursosComponent {
 
   closeResult: string = '';
 
-  constructor(private modalService: NgbModal) {}
+  constructor(private modalService: NgbModal, private _service: CursoService) {}
+
+  ngOnInit(): void {
+    this.get();
+  }
+
+  get() {
+    this._service.getCurso().subscribe(x => console.log(x));
+  }
 
   open(content:any) {
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
