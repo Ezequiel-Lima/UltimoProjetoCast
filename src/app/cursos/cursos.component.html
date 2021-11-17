@@ -3,7 +3,7 @@
   <button  class="btn btn-light" (click)="open(mymodal)">Cadastrar Curso</button>
 </div>
 
-<ng-template #mymodal let-modal>
+<ng-template #mymodal let-modal [formGroup]="cursoForm">
   <div class="modal-header">
     <h4 class="modal-title" id="modal-basic-title">Cadastrar Curso</h4>
     <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
@@ -16,45 +16,44 @@
       <div class="input-group-prepend">
         <span class="input-group-text">Descrição</span>
       </div>
-      <textarea class="form-control" aria-label="With textarea"></textarea>
+      <textarea class="form-control" aria-label="With textarea" formControlName="descricao"></textarea>
     </div><br>
 
     <div class="input-group mb-3">
       <div class="input-group-prepend">
         <span class="input-group-text" id="inputGroup-sizing-default">Data de Início</span>
       </div>
-      <input type="date" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+      <input type="date" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" formControlName="dataInicio">
     </div>
 
     <div class="input-group mb-3">
       <div class="input-group-prepend">
         <span class="input-group-text" id="inputGroup-sizing-default">Data de Término</span>
       </div>
-      <input type="date" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+      <input type="date" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" formControlName="dataTermino">
     </div>
 
     <div class="input-group mb-3">
       <div class="input-group-prepend">
         <span class="input-group-text" id="inputGroup-sizing-default">Quantidade de Alunos</span>
       </div>
-      <input type="number" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+      <input type="number" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" formControlName="quantidadeAlunos">
     </div>
 
     <div class="input-group mb-3">
       <div class="input-group-prepend">
         <label class="input-group-text" for="inputGroupSelect01">Categorias</label>
       </div>
-      <select class="custom-select" id="inputGroupSelect01">
-        <option selected>--selecionar--</option>
-        <option value="1">One</option>
-        <option value="2">Two</option>
-        <option value="3">Three</option>
+      <select class="custom-select" id="inputGroupSelect01" formControlName="categoriaId">
+        <option *ngFor="let categoria of categorias" value = {{categoria.id}}>
+          {{categoria.nome}}
+        </option>
       </select>
     </div>
 
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-success" (click)="modal.close('Save click')">Adicionar</button>
+    <button type="submit" class="btn btn-success" (click)="save()">Adicionar</button>
   </div>
 </ng-template>
 
@@ -71,6 +70,7 @@
     <!-- Tabela Superior -->
     <thead>
       <tr class="table-dark">
+        <th scope="col">Id</th>
         <th scope="col">Descrição do assunto</th>
         <th scope="col">Data de início</th>
         <th scope="col">Data de término</th>
@@ -81,12 +81,13 @@
     </thead>
     <!-- Corpo da Tabela -->
     <tbody class="table-light">
-      <tr>
-        <td>Desenvolvimento em C# .Net</td>
-        <td>06/20/2021</td>
-        <td>19/11/2021</td>
-        <td>20</td>
-        <td>Multiplataforma</td>
+      <tr *ngFor="let curso of cursos">
+        <td>{{curso.id}}</td>
+        <td>{{curso.descricao}}</td>
+        <td>{{curso.dataInicio}}</td>
+        <td>{{curso.dataTermino}}</td>
+        <td>{{curso.quantidadeAlunos}}</td>
+        <td>{{curso.categoriaId}}</td>
         <td>
           <a href="">
             <i class="fa fa-trash" aria-hidden="true"> Excluir</i>

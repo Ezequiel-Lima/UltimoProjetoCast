@@ -1,14 +1,13 @@
-export interface ICurso {
-  Id: number;
-  Descricao : string;
-  DataInicio: Date;
-  DataTermino: Date;
-  QuantidadeAlunos: number;
-  CategoriaId: number;
-  CategoriaDTO: ICategoriaDTO;
+export interface Curso {
+  id: number;
+  descricao : string;
+  dataInicio: Date;
+  dataTermino: Date;
+  quantidadeAlunos: number;
+  categoriaId: number;
 }
 
-export interface ICategoriaDTO {
-  Id: number;
-  Nome: string;
+export interface Categoria {
+  id: number;
+  nome: string;
 }

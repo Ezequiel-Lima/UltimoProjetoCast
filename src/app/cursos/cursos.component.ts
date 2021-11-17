@@ -1,6 +1,9 @@
+import { ToastrService } from 'ngx-toastr';
+import { Curso, Categoria } from './../Utils/interfaces';
 import { Component, OnInit } from '@angular/core';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import { CursoService } from '../services/curso.service';
+import { FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-cursos',
@@ -8,19 +11,28 @@ import { CursoService } from '../services/curso.service';
   styleUrls: ['./cursos.component.css']
 })
 
-export class CursosComponent {
+export class CursosComponent implements OnInit {
   title = 'appBootstrap';
+  cursos: Curso[] = [];
+  categorias: Categoria[] = [];
+  categoriaSelecionada: Categoria;
 
   closeResult: string = '';
 
-  constructor(private modalService: NgbModal, private _service: CursoService) {}
+  cursoForm = this.fb.group({
+    descricao: [''],
+    dataInicio: [''],
+    dataTermino: [''],
+    quantidadeAlunos: [''],
+    categoriaId: ['']
+  });
 
-  ngOnInit(): void {
-    this.get();
+  constructor(private modalService: NgbModal, private _service: CursoService, private fb: FormBuilder, private _toastrService: ToastrService) {
   }
 
-  get() {
-    this._service.getCurso().subscribe(x => console.log(x));
+  ngOnInit(): void {
+    this._service.getCurso().subscribe(dados => this.cursos = dados);
+    this._service.getCategoria().subscribe(data => this.categorias = data);
   }
 
   open(content:any) {
@@ -39,5 +51,12 @@ export class CursosComponent {
     } else {
       return  `with: ${reason}`;
     }
+  }
+
+  public async save() {
+    await this._service.addCurso(this.cursoForm.value).subscribe(res => {
+      this._toastrService.success("Registro inserido com suceeso")
+      console.log(res);
+    });
   }
 }
