@@ -59,4 +59,11 @@ export class CursosComponent implements OnInit {
       console.log(res);
     });
   }
+
+  public async delete(){
+    await this._service.deleteCurso(this.cursos.map(x => x.id).toString()).subscribe(res =>{
+      this._toastrService.success("Registro deletado com suceeso")
+      console.log(res);
+    });
+  }
 }

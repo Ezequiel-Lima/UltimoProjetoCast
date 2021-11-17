@@ -1,0 +1,31 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Migrations\20211116011333_InitialCreate.cs" />
+    <Compile Remove="Migrations\20211116011333_InitialCreate.Designer.cs" />
+    <Compile Remove="Migrations\20211116013332_Categoria.cs" />
+    <Compile Remove="Migrations\20211116013332_Categoria.Designer.cs" />
+    <Compile Remove="Migrations\20211116173352_CategoriaModel.cs" />
+    <Compile Remove="Migrations\20211116173352_CategoriaModel.Designer.cs" />
+    <Compile Remove="Migrations\20211116174657_CategoriaModeltrue.cs" />
+    <Compile Remove="Migrations\20211116174657_CategoriaModeltrue.Designer.cs" />
+    <Compile Remove="Migrations\20211116175216_initial-create.cs" />
+    <Compile Remove="Migrations\20211116175216_initial-create.Designer.cs" />
+    <Compile Remove="Migrations\20211117002911_CursoGuid.cs" />
+    <Compile Remove="Migrations\20211117002911_CursoGuid.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.8" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.8">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
+  </ItemGroup>
+
+</Project>
