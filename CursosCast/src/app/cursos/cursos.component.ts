@@ -60,6 +60,13 @@ export class CursosComponent implements OnInit {
     });
   }
 
+  public async update() {
+    await this._service.updateCurso(this.cursoForm.value).subscribe(res => {
+      this._toastrService.success("Registro inserido com suceeso")
+      console.log(res);
+    });
+  }
+
   public async delete(){
     await this._service.deleteCurso(this.cursos.map(x => x.id).toString()).subscribe(res =>{
       this._toastrService.success("Registro deletado com suceeso")

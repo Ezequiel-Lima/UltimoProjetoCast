@@ -30,4 +30,8 @@ export class CursoService {
   public deleteCurso(id: string): Observable<Curso> {
     return this.httpClient.delete<Curso>(`${this.base_url}/api/Curso/` + id);
   }
+
+  public updateCurso(curso: Curso): Observable<Curso> {
+    return this.httpClient.post<Curso>(`${this.base_url}/api/Curso/update-curso`,curso);
+  }
 }

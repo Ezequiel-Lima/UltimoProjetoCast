@@ -12,6 +12,7 @@ namespace API.Application.Services
     {
         Task<Curso> Create(Curso dados);
         Task<Curso> Delete(Guid id);
+        Task<Curso> Update(Curso dados);
     }
     public class CursoService : ICursoService
     {
@@ -33,7 +34,7 @@ namespace API.Application.Services
             result.Id = Guid.NewGuid();
             result.Descricao = dados.Descricao;
             result.DataInicio = dados.DataInicio;
-            Validacao();
+            //Validacao();
             result.DataTermino = dados.DataTermino;
             result.QuantidadeAlunos = dados.QuantidadeAlunos;
             result.CategoriaId = dados.CategoriaId;
@@ -55,13 +56,34 @@ namespace API.Application.Services
             await _ouw.CommitAsync();
             return null;
         }
-        public void Validacao()
+        //public void Validacao()
+        //{
+        //    var result = _readRepository.FindAll();
+        //    foreach (var teste in result)
+        //    {
+        //        result.Where(x => x.DataInicio >= x.DataTermino || x.DataTermino <= x.DataInicio);
+        //    }
+        //}
+        public async Task<Curso> Update(Curso dados)
         {
-            var result = _readRepository.FindAll();
-            foreach (var teste in result)
-            {
-                result.Where(x => x.DataInicio >= x.DataTermino || x.DataTermino <= x.DataInicio);
-            }
+            var result = _readRepository.FindByCondition(x => x.Id == dados.Id);
+            if (result == null)
+                throw new Exception();
+
+            var teste = new Curso();
+
+            teste.Id = dados.Id;
+            teste.Descricao = dados.Descricao;
+            teste.DataInicio = dados.DataInicio;
+            teste.DataTermino = dados.DataTermino;
+            teste.QuantidadeAlunos = dados.QuantidadeAlunos;
+            teste.CategoriaId = dados.CategoriaId;
+
+            
+
+            _writeRepository.Update(teste);
+            await _ouw.CommitAsync();
+            return teste;
         }
     }
 }

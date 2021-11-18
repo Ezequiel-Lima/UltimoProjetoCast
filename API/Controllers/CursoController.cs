@@ -48,5 +48,12 @@ namespace API.Controllers
              await _service.Delete(id);
             return Ok();
         }
+
+        [HttpPut("update-curso")]
+        public async Task<Curso> UpdateCurso(Curso curso)
+        {
+            var result = await _service.Update(curso);
+            return result;
+        }
     }
 }
