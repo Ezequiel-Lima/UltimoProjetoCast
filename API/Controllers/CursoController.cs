@@ -28,6 +28,11 @@ namespace API.Controllers
         {
             return Ok(_repository.FindAll());
         }
+        [HttpGet("{id}")]
+        public IActionResult GetById(Guid id)
+        {
+            return Ok(_repository.FindByCondition(x => x.Id == id));
+        }
 
         [HttpGet("categoria")]
         public IActionResult GetCategoria()

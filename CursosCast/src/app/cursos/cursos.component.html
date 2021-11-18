@@ -1,4 +1,7 @@
 <br>
+
+<!-- modal cadastrar -->
+
 <div class="d-flex justify-content-center">
   <button  class="btn btn-light" (click)="open(mymodal)">Cadastrar Curso</button>
 </div>
@@ -57,6 +60,62 @@
   </div>
 </ng-template>
 
+<!-- modal editar -->
+
+<ng-template #mymodal2 let-modal [formGroup]="cursoForm">
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Editar Curso</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">×</span>
+    </button>
+  </div>
+  <div class="modal-body">
+
+    <div class="input-group">
+      <div class="input-group-prepend">
+        <span class="input-group-text">Descrição</span>
+      </div>
+      <textarea class="form-control" aria-label="With textarea" formControlName="descricao" >{{teste}}</textarea>
+    </div><br>
+
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="inputGroup-sizing-default">Data de Início</span>
+      </div>
+      <input type="date" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" formControlName="dataInicio">
+    </div>
+
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="inputGroup-sizing-default">Data de Término</span>
+      </div>
+      <input type="date" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" formControlName="dataTermino">
+    </div>
+
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="inputGroup-sizing-default">Quantidade de Alunos</span>
+      </div>
+      <input type="number" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" formControlName="quantidadeAlunos">
+    </div>
+
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <label class="input-group-text" for="inputGroupSelect01">Categorias</label>
+      </div>
+      <select class="custom-select" id="inputGroupSelect01" formControlName="categoriaId">
+        <option *ngFor="let categoria of categorias" value = {{categoria.id}}>
+          {{categoria.nome}}
+        </option>
+      </select>
+    </div>
+
+  </div>
+  <div class="modal-footer">
+    <button type="submit" class="btn btn-success" (click)="update()">Editar</button>
+  </div>
+</ng-template>
+
 <div class="text-center text-white">
   <div class="cover-container d-flex w-25  p-3 mx-auto flex-column">
     <input class="form-control me-2" type="search" placeholder="Pesquisa pelo nome do curso ou período" aria-label="Search">
@@ -89,12 +148,12 @@
         <td>{{curso.quantidadeAlunos}}</td>
         <td>{{curso.categoriaId}}</td>
         <td>
-          <a href="">
-            <i class="fa fa-trash" aria-hidden="true" (click)="delete()"> Excluir</i>
-          </a>
+          <!-- <a> -->
+            <button type="button" class="fa fa-trash" aria-hidden="true" (click)="delete(curso)"> Excluir</button>
+          <!-- </a> -->
           <br>
           <a>
-            <i class="fa fa-pencil" aria-hidden="true" (click)="open(mymodal)"> Editar</i>
+            <i class="fa fa-pencil" aria-hidden="true" (click)="open(mymodal2)" (click)="getById(curso)"> Editar</i>
           </a>
         </td>
       </tr>

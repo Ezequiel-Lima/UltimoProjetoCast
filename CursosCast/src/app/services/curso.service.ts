@@ -19,6 +19,10 @@ export class CursoService {
     return this.httpClient.get<Curso[]>(`${this.base_url}/api/Curso/`).pipe(tap(console.log));
   }
 
+  public getCursoById(id: string): Observable<Curso[]> {
+    return this.httpClient.get<Curso[]>(`${this.base_url}/api/Curso/` + id).pipe(tap(console.log));
+  }
+
   public getCategoria(): Observable<Categoria[]> {
     return this.httpClient.get<Categoria[]>(`${this.base_url}/api/Curso/categoria`).pipe(tap(console.log));
   }

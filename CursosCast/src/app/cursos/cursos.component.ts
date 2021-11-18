@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import { CursoService } from '../services/curso.service';
 import { FormBuilder } from '@angular/forms';
+import { findIndex } from 'rxjs/operators';
 
 @Component({
   selector: 'app-cursos',
@@ -16,6 +17,8 @@ export class CursosComponent implements OnInit {
   cursos: Curso[] = [];
   categorias: Categoria[] = [];
   categoriaSelecionada: Categoria;
+  index: number;
+  teste: string;
 
   closeResult: string = '';
 
@@ -53,6 +56,12 @@ export class CursosComponent implements OnInit {
     }
   }
 
+  public async getById(curso: Curso) {
+    this._service.getCursoById(curso.id.toString()).subscribe(dados => this.cursos = dados)
+    this.teste = curso.descricao
+    console.log(this.teste)
+  }
+
   public async save() {
     await this._service.addCurso(this.cursoForm.value).subscribe(res => {
       this._toastrService.success("Registro inserido com suceeso")
@@ -67,10 +76,12 @@ export class CursosComponent implements OnInit {
     });
   }
 
-  public async delete(){
-    await this._service.deleteCurso(this.cursos.map(x => x.id).toString()).subscribe(res =>{
+  public async delete(curso: Curso){
+    debugger
+    await this._service.deleteCurso(curso.id.toString()).subscribe(res =>{
       this._toastrService.success("Registro deletado com suceeso")
       console.log(res);
+
     });
   }
 }
