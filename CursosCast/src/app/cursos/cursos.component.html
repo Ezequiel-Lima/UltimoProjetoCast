@@ -56,7 +56,7 @@
 
   </div>
   <div class="modal-footer">
-    <button type="submit" class="btn btn-success" (click)="save()">Adicionar</button>
+    <button type="submit" class="btn btn-success" (click)="save()" (click)="modal.dismiss()">Adicionar</button>
   </div>
 </ng-template>
 
@@ -132,7 +132,7 @@
         <th scope="col">Descrição do assunto</th>
         <th scope="col">Data de início</th>
         <th scope="col">Data de término</th>
-        <th scope="col">Quantidade de alunos por turma</th>
+        <th scope="col">Quantidade de alunos</th>
         <th scope="col">Categoria</th>
         <th scope="col">Opções</th>
       </tr>

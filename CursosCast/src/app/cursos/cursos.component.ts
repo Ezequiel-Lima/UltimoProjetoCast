@@ -75,24 +75,22 @@ export class CursosComponent implements OnInit {
 
   public async save() {
     await this._service.addCurso(this.cursoForm.value).subscribe(res => {
-      this._toastrService.success("Registro inserido com suceeso")
+      this._toastrService.success("Registro inserido com sucesso")
       console.log(res);
     });
   }
 
   public async update() {
     await this._service.updateCurso(this.cursoForm.value).subscribe(res => {
-      this._toastrService.success("Registro inserido com suceeso")
+      this._toastrService.success("Registro atualizado com sucesso")
       console.log(res);
     });
   }
 
   public async delete(curso: Curso){
-    debugger
     await this._service.deleteCurso(curso.id.toString()).subscribe(res =>{
-      this._toastrService.success("Registro deletado com suceeso")
+      this._toastrService.success("Registro deletado com sucesso")
       console.log(res);
-
     });
   }
 }
