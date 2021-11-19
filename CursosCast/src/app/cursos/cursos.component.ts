@@ -19,10 +19,21 @@ export class CursosComponent implements OnInit {
   categoriaSelecionada: Categoria;
   index: number;
   teste: string;
+  filterTerm: string;
+  cursoTeste: Curso;
 
   closeResult: string = '';
 
   cursoForm = this.fb.group({
+    descricao: [''],
+    dataInicio: [''],
+    dataTermino: [''],
+    quantidadeAlunos: [''],
+    categoriaId: ['']
+  });
+
+  cursoEditForm = this.fb.group({
+    id:[this.cursos.map(x => x.id)],
     descricao: [''],
     dataInicio: [''],
     dataTermino: [''],

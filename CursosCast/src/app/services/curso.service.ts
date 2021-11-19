@@ -36,6 +36,6 @@ export class CursoService {
   }
 
   public updateCurso(curso: Curso): Observable<Curso> {
-    return this.httpClient.post<Curso>(`${this.base_url}/api/Curso/update-curso`,curso);
+    return this.httpClient.put<Curso>(`${this.base_url}/api/Curso/update-curso`,curso);
   }
 }

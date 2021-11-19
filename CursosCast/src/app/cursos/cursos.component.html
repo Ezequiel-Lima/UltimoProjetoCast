@@ -112,13 +112,13 @@
 
   </div>
   <div class="modal-footer">
-    <button type="submit" class="btn btn-success" (click)="update()">Editar</button>
+    <button type="submit" class="btn btn-success"  (click)="update()">Editar</button>
   </div>
 </ng-template>
 
 <div class="text-center text-white">
   <div class="cover-container d-flex w-25  p-3 mx-auto flex-column">
-    <input class="form-control me-2" type="search" placeholder="Pesquisa pelo nome do curso ou período" aria-label="Search">
+    <input class="form-control me-2" type="search" placeholder="Pesquisa pelo nome do curso ou período" aria-label="Search" [(ngModel)]="filterTerm">
   </div>
 </div>
 
@@ -139,10 +139,10 @@
     </thead>
     <!-- Corpo da Tabela -->
     <tbody class="table-light">
-      <tr *ngFor="let curso of cursos">
+      <tr *ngFor="let curso of cursos | filter:filterTerm">
         <td>{{curso.descricao}}</td>
-        <td>{{curso.dataInicio}}</td>
-        <td>{{curso.dataTermino}}</td>
+        <td>{{curso.dataInicio | date:"dd/MM/yyyy"}}</td>
+        <td>{{curso.dataTermino | date:"dd/MM/yyyy"}}</td>
         <td>{{curso.quantidadeAlunos}}</td>
         <td *ngIf="curso.categoriaId == 1">Multiplataforma</td>
         <td *ngIf="curso.categoriaId == 2">Banco de Dados</td>
@@ -152,7 +152,7 @@
         <td>
             <button type="button" class="btn btn-danger" aria-hidden="true" (click)="delete(curso)"> Excluir</button>
           <br>
-            <button class="btn btn-primary" aria-hidden="true" (click)="open(mymodal2)" (click)="getById(curso)"> Editar</button>
+            <button class="btn btn-primary" aria-hidden="true" (click)="open(mymodal2)"> Editar</button>
         </td>
       </tr>
       <tr>
