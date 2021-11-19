@@ -127,9 +127,8 @@
   <!-- Tabela de cursos -->
   <table class="table">
     <!-- Tabela Superior -->
-    <thead>
-      <tr class="table-dark">
-        <th scope="col">Id</th>
+    <thead class="table-dark">
+      <tr>
         <th scope="col">Descrição do assunto</th>
         <th scope="col">Data de início</th>
         <th scope="col">Data de término</th>
@@ -141,20 +140,19 @@
     <!-- Corpo da Tabela -->
     <tbody class="table-light">
       <tr *ngFor="let curso of cursos">
-        <td>{{curso.id}}</td>
         <td>{{curso.descricao}}</td>
         <td>{{curso.dataInicio}}</td>
         <td>{{curso.dataTermino}}</td>
         <td>{{curso.quantidadeAlunos}}</td>
-        <td>{{curso.categoriaId}}</td>
+        <td *ngIf="curso.categoriaId == 1">Multiplataforma</td>
+        <td *ngIf="curso.categoriaId == 2">Banco de Dados</td>
+        <td *ngIf="curso.categoriaId == 3">Metodologia</td>
+        <td *ngIf="curso.categoriaId == 4">Comportamento</td>
+        <td *ngIf="curso.categoriaId == 5">Comunicação</td>
         <td>
-          <!-- <a> -->
-            <button type="button" class="fa fa-trash" aria-hidden="true" (click)="delete(curso)"> Excluir</button>
-          <!-- </a> -->
+            <button type="button" class="btn btn-danger" aria-hidden="true" (click)="delete(curso)"> Excluir</button>
           <br>
-          <a>
-            <i class="fa fa-pencil" aria-hidden="true" (click)="open(mymodal2)" (click)="getById(curso)"> Editar</i>
-          </a>
+            <button class="btn btn-primary" aria-hidden="true" (click)="open(mymodal2)" (click)="getById(curso)"> Editar</button>
         </td>
       </tr>
       <tr>
